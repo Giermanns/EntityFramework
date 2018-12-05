@@ -10,6 +10,9 @@ namespace ConsoleApp.NewDb
             Boolean run = false;
             int caseSwitch = 0;
             int id = 9;
+            String titel = "";
+            String content = "";
+            int blogId = 0;
 
             while (run)
             {
@@ -32,12 +35,28 @@ namespace ConsoleApp.NewDb
                 {
                     db.Blogs.Add(new Blog { Url = "https://blogs.msdn.microsoft.com/adonet/page/2/" });
                     var count = db.SaveChanges();
-                    Console.WriteLine("{0} records saved to database", count);
+                    Console.WriteLine($"{count} records saved to database");
                     Console.WriteLine();
                     Console.WriteLine("All blogs in database:");
                     foreach (var blog in db.Blogs)
                     {
                         Console.WriteLine($" - {blog.Url}");
+                    }
+                    Console.WriteLine("Press a Key to Exit!");
+                    Console.ReadKey();
+                    run = false;
+                }
+                //Add Post
+                using (var db = new BloggingContext())
+                {
+                    db.Posts.Add(new Post { Title = $"{titel}", Content = $"{content}", BlogId = blogId });
+                    var count = db.SaveChanges();
+                    Console.WriteLine($"{count} records saved to database");
+                    Console.WriteLine();
+                    Console.WriteLine("Post in database");
+                    foreach (var post in db.Posts)
+                    {
+                        Console.WriteLine($" - {post.Title}", $" - {post.Content}", $" - {post.BlogId}");
                     }
                     Console.WriteLine("Press a Key to Exit!");
                     Console.ReadKey();
