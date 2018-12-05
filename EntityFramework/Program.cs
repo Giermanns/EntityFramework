@@ -5,15 +5,16 @@ namespace ConsoleApp.NewDb
 {
     class Program
     {
-        static void Main(string[] args)
+        public void Main(string[] args)
         {
             Boolean run = false;
             int caseSwitch = 0;
             int id = 9;
-            String titel = "";
-            String content = "";
+            string titel = string.Empty;
+            string content = string.Empty;
             int blogId = 0;
-
+            string url = string.Empty;
+            //Console.WriteLine(url);
             while (run)
             {
                 Console.WriteLine("Entity Framework");
@@ -33,7 +34,7 @@ namespace ConsoleApp.NewDb
                 //Add Blog
                 using (var db = new BloggingContext())
                 {
-                    db.Blogs.Add(new Blog { Url = "https://blogs.msdn.microsoft.com/adonet/page/2/" });
+                    db.Blogs.Add(new Blog { Url = $"{url}" });
                     var count = db.SaveChanges();
                     Console.WriteLine($"{count} records saved to database");
                     Console.WriteLine();
@@ -63,11 +64,11 @@ namespace ConsoleApp.NewDb
                     run = false;
                 }
                 //Remove Blog with BlogId
-                var url = new Blog() { BlogId = id };
+                var removeUrl = new Blog() { BlogId = id };
                 using (var context = new BloggingContext())
                 {
-                    context.Blogs.Attach(url);
-                    context.Blogs.Remove(url);
+                    context.Blogs.Attach(removeUrl);
+                    context.Blogs.Remove(removeUrl);
                     context.SaveChanges();
                 }
             }
