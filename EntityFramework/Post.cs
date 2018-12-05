@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.NewDb
 {
+    //Datastructur Post
     public class Post
     {
         public int PostId { get; set; }
