@@ -24,6 +24,7 @@ namespace ConsoleApp.NewDb
         {
             if (!optionsBuilder.IsConfigured)
             {
+                //Server
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;");
                 optionsBuilder.ConfigureWarnings(warnigs => warnigs.Throw(RelationalEventId.QueryClientEvaluationWarning));
             }
