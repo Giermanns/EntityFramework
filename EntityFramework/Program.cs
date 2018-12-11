@@ -76,6 +76,7 @@ namespace ConsoleApp.NewDb
             //Add Post
             using (var db = new BloggingContext())
             {
+                Console.WriteLine("");
                 db.Posts.Add(new Post { Title = $"{titel}", Content = $"{content}", BlogId = blogId });
                 var count = db.SaveChanges();
                 Console.WriteLine($"{count} records saved to database");
@@ -109,6 +110,7 @@ namespace ConsoleApp.NewDb
             var removePost = new Post() { PostId = id };
             using (var context = new BloggingContext())
             {
+                //TODO Remove Post
                 context.Blogs.Attach(removePost);
                 context.Blogs.Remove(removePost);
                 context.SaveChanges();
