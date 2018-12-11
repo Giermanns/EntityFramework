@@ -1,19 +1,23 @@
 ﻿using System;
-using System.Linq;
 
 namespace ConsoleApp.NewDb
 {
-    class Program
+    public class Program
     {
         Boolean run = false;
         int caseSwitch;
         int id = 9;
         string titel = string.Empty;
         string content = string.Empty;
-        int blogId = 0;
+        int blogId;
         string url = string.Empty;
 
-        public void Main(string[] args)
+        public static void Main(string[] args)
+        {
+            new Program();
+        }
+
+        public Program()
         {
             while (run)
             {
@@ -43,7 +47,7 @@ namespace ConsoleApp.NewDb
                     default:
                         Console.WriteLine("Error");
                         break;
-                }                
+                }
             }
         }
 
@@ -95,6 +99,18 @@ namespace ConsoleApp.NewDb
             {
                 context.Blogs.Attach(removeUrl);
                 context.Blogs.Remove(removeUrl);
+                context.SaveChanges();
+            }
+        }
+
+        public void DeletePost()
+        {
+            //Remove Post with PostId
+            var removePost = new Post() { PostId = id };
+            using (var context = new BloggingContext())
+            {
+                context.Blogs.Attach(removePost);
+                context.Blogs.Remove(removePost);
                 context.SaveChanges();
             }
         }
