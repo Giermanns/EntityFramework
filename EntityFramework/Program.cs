@@ -6,7 +6,6 @@ namespace ConsoleApp.NewDb
     {
         Boolean run = false;
         int caseSwitch;
-        int id;
         string titel = string.Empty;
         string content = string.Empty;
         int blogId;
@@ -123,13 +122,13 @@ namespace ConsoleApp.NewDb
             }
         }
 
+        //TODO DeletePost
         //public void DeletePost()
         //{
         //    //Remove Post with PostId
         //    var removePost = new Post() { PostId = id };
         //    using (var context = new BloggingContext())
         //    {
-        //        //TODO Remove Post
         //        //context.Blogs.Attach(removePost);
         //        //context.Blogs.Remove(removePost);
         //        //context.SaveChanges();
