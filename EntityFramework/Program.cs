@@ -108,7 +108,13 @@ namespace ConsoleApp.NewDb
         public void DeleteBlog()
         {
             //Remove Blog with BlogId
-            var removeUrl = new Blog() { BlogId = id };
+            Console.WriteLine("BlogId: ");
+            input = Console.ReadLine();
+            if (int.TryParse(input, out blogId))
+            {
+                Console.WriteLine($"{error} wrong ID!");
+            }
+            var removeUrl = new Blog() { BlogId = blogId};
             using (var context = new BloggingContext())
             {
                 context.Blogs.Attach(removeUrl);
