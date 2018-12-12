@@ -6,11 +6,13 @@ namespace ConsoleApp.NewDb
     {
         Boolean run = false;
         int caseSwitch;
-        int id = 9;
+        int id;
         string titel = string.Empty;
         string content = string.Empty;
         int blogId;
         string url = string.Empty;
+        string input = string.Empty;
+        string error = "Error";
 
         public static void Main(string[] args)
         {
@@ -45,7 +47,7 @@ namespace ConsoleApp.NewDb
                         DeleteBlog.DeleteBlog();
                         break;
                     default:
-                        Console.WriteLine("Error");
+                        Console.WriteLine(error);
                         break;
                 }
             }
@@ -56,6 +58,8 @@ namespace ConsoleApp.NewDb
             //Add Blog
             using (var db = new BloggingContext())
             {
+                Console.WriteLine("Blog URL: ");
+                url = Console.ReadLine();
                 db.Blogs.Add(new Blog { Url = $"{url}" });
                 var count = db.SaveChanges();
                 Console.WriteLine($"{count} records saved to database");
@@ -76,7 +80,16 @@ namespace ConsoleApp.NewDb
             //Add Post
             using (var db = new BloggingContext())
             {
-                Console.WriteLine("");
+                Console.WriteLine("Titel: ");
+                titel = Console.ReadLine();
+                Console.WriteLine("Content: ");
+                content = Console.ReadLine();
+                Console.WriteLine("BlogId: ");
+                input = Console.ReadLine();
+                if (int.TryParse(input, out blogId))
+                {
+                    Console.WriteLine(error);
+                }
                 db.Posts.Add(new Post { Title = $"{titel}", Content = $"{content}", BlogId = blogId });
                 var count = db.SaveChanges();
                 Console.WriteLine($"{count} records saved to database");
