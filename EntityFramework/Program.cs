@@ -123,16 +123,16 @@ namespace ConsoleApp.NewDb
         }
 
         //TODO DeletePost
-        //public void DeletePost()
-        //{
-        //    //Remove Post with PostId
-        //    var removePost = new Post() { PostId = id };
-        //    using (var context = new BloggingContext())
-        //    {
-        //        //context.Blogs.Attach(removePost);
-        //        //context.Blogs.Remove(removePost);
-        //        //context.SaveChanges();
-        //    }
-        //}
+        public void DeletePost()
+        {
+            //Remove Post with PostId
+            var removePost = new Post() { PostId = id };
+            using (var context = new BloggingContext())
+            {
+                context.Blogs.Attach(removePost);
+                context.Blogs.Remove(removePost);
+                context.SaveChanges();
+            }
+        }
     }
 }
