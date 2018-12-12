@@ -47,7 +47,7 @@ namespace ConsoleApp.NewDb
                         DeleteBlog.DeleteBlog();
                         break;
                     default:
-                        Console.WriteLine(error);
+                        Console.WriteLine($"{error} wrong input!");
                         break;
                 }
             }
@@ -88,7 +88,7 @@ namespace ConsoleApp.NewDb
                 input = Console.ReadLine();
                 if (int.TryParse(input, out blogId))
                 {
-                    Console.WriteLine(error);
+                    Console.WriteLine($"{error} wrong ID!");
                 }
                 db.Posts.Add(new Post { Title = $"{titel}", Content = $"{content}", BlogId = blogId });
                 var count = db.SaveChanges();
@@ -117,17 +117,17 @@ namespace ConsoleApp.NewDb
             }
         }
 
-        public void DeletePost()
-        {
-            //Remove Post with PostId
-            var removePost = new Post() { PostId = id };
-            using (var context = new BloggingContext())
-            {
-                //TODO Remove Post
-                context.Blogs.Attach(removePost);
-                context.Blogs.Remove(removePost);
-                context.SaveChanges();
-            }
-        }
+        //public void DeletePost()
+        //{
+        //    //Remove Post with PostId
+        //    var removePost = new Post() { PostId = id };
+        //    using (var context = new BloggingContext())
+        //    {
+        //        //TODO Remove Post
+        //        //context.Blogs.Attach(removePost);
+        //        //context.Blogs.Remove(removePost);
+        //        //context.SaveChanges();
+        //    }
+        //}
     }
 }
